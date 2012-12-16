@@ -26,6 +26,7 @@ Instruções de instalação
 6. Insira o Nome, Marque 'Sim' em Publicado, Insira uma descrição e em método selecione Frete Correios para VirtueMart 2 by Rodrigo dos Santos"
 7. Clique em Salvar
 8. Clique em Configuração e insira o CEP de Origem e escolha as demais opções.
+8.1 Para adicionar mais de uma opção, como por exemplo SEDEX e PAC ao mesmo tempo, basta repetir esta operação.
 9. Está pronto.
 
 Recomendações
