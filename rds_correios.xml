@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<install version="1.0" type="plugin" group="vmshipment">
+    <name>Frete Correios para VirtueMart 2 by Rodrigo dos Santos</name>
+    <creationDate>December 2012</creationDate>
+    <author>Rodrigo dos Santos</author>
+    <authorUrl>http://www.rodrigodossantos.ws</authorUrl>
+    <copyright>Copyright (C) 2008-2012.</copyright>
+    <license>http://www.opensource.org/licenses/bsd-license.php BSD License</license>
+    <version>1.0</version>
+    <description>Frete Correios para VirtueMart 2 by Rodrigo dos Santos</description>
+    <languages>
+        <language tag="pt-BR">pt-BR.plg_vmshipment_rds_correios.ini</language>
+    </languages>
+    <files>
+        <filename plugin="rds_correios">rds_correios.php</filename>
+        <filename>RsCorreios.php</filename>
+    </files>
+    <params addpath="/administrator/components/com_virtuemart/elements">
+        <param type="vmjpluginwarning"/>
+        <param name="cepOrigem" type="text" size="15" default=""
+               label="RDS_CORREIOS_CEP_ORIGEM"
+               description="RDS_CORREIOS_CEP_ORIGEM_DESCRICAO"/>
+        <param name="servico" type="list" default="41106" label="RDS_CORREIOS_SERVICO" description="RDS_CORREIOS_SERVICO_DESCRICAO">
+            <option value="41106">RDS_CORREIOS_SERVICO_PAC</option>
+            <option value="40010">RDS_CORREIOS_SERVICO_SEDEX</option>
+            <option value="40215">RDS_CORREIOS_SERVICO_SEDEX10</option>
+            <option value="40290">RDS_CORREIOS_SERVICO_SEDEX_HOJE</option>
+        </param>
+        <param name="formato" type="list" default="1" label="RDS_CORREIOS_FORMATO" description="RDS_CORREIOS_FORMATO_DESCRICAO">
+            <option value="1">RDS_CORREIOS_FORMATO_CAIXA</option>
+            <option value="2">RDS_CORREIOS_FORMATO_ROLO</option>
+            <option value="3">RDS_CORREIOS_FORMATO_ENVELOPE</option>
+        </param>
+        <param name="maoPropria" type="list" default="0" label="RDS_CORREIOS_MAO_PROPRIA" description="RDS_CORREIOS_MAO_PROPRIA_DESCRICAO">
+            <option value="0">RDS_CORREIOS_NAO</option>
+            <option value="1">RDS_CORREIOS_SIM</option>
+        </param>
+        <param name="avisoRecebimento" type="list" default="0" label="RDS_CORREIOS_AVISO_RECEBIMENTO" description="RDS_CORREIOS_AVISO_RECEBIMENTO_DESCRICAO">
+            <option value="0">RDS_CORREIOS_NAO</option>
+            <option value="1">RDS_CORREIOS_SIM</option>
+        </param>
+        <param name="valorDeclarado" type="list" default="0" label="RDS_CORREIOS_VALOR_DECLARADO" description="RDS_CORREIOS_VALOR_DECLARADO_DESCRICAO">
+            <option value="0">RDS_CORREIOS_NAO</option>
+            <option value="1">RDS_CORREIOS_SIM</option>
+        </param>
+    </params>
+</install>
