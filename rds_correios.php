@@ -213,6 +213,46 @@ class plgVmShipmentRds_correios extends vmPSPlugin
     }
 
     /**
+     * Retorna o CEP de entrega. Primeiro tenha utilizar o CEP do endereço
+     * de entrega. Caso o endereço de entrega esteja em branco é utilizado
+     * o CEP do endereço de faturamento
+     *
+     * @param VirtueMartCart $cart Objeto com as informações o carrinho de compras
+     *
+     * @return string
+     */
+    protected function getZipCode(VirtueMartCart $cart)
+    {
+        $zipCode = $cart->ST['zip'];
+
+        if (empty($zipCode)) {
+            $zipCode = $cart->BT['zip'];
+        }
+
+        return $zipCode;
+    }
+
+    /**
+     * Retorna o código do país. Primeiro tenha utilizar o país do endereço
+     * de entrega. Caso o endereço de entrega esteja em branco é utilizado
+     * o país do endereço de faturamento
+     *
+     * @param VirtueMartCart $cart Objeto com as informações o carrinho de compras
+     *
+     * @return int
+     */
+    protected function getCountryId(VirtueMartCart $cart)
+    {
+        $countryId = $cart->ST['virtuemart_country_id'];
+
+        if (empty($countryId)) {
+            $countryId = $cart->BT['virtuemart_country_id'];
+        }
+
+        return $countryId;
+    }
+
+    /**
      * Utiliza os métodos da classe RsCorreios para se comunicar
      * com o WS dos correios e obter as informações do frete
      *
@@ -227,7 +267,7 @@ class plgVmShipmentRds_correios extends vmPSPlugin
         $shipment = new RsCorreios();
         $response = $shipment
             ->setCepOrigem($method->cepOrigem)
-            ->setCepDestino($cart->ST['zip'])
+            ->setCepDestino($this->getZipCode($cart))
             ->setLargura($this->getOrderWidth($cart))
             ->setComprimento($this->getOrderLength($cart))
             ->setAltura($this->getOrderHeight($cart))
@@ -270,7 +310,7 @@ class plgVmShipmentRds_correios extends vmPSPlugin
      */
     protected function checkConditions(VirtueMartCart $cart, $method, $cart_prices)
     {
-        $zipCode = empty($cart->ST['zip']) ? false : true;
+        $zipCode = $this->getZipCode($cart);
 
         // CEP não informado
         if (!$zipCode) {
@@ -286,7 +326,7 @@ class plgVmShipmentRds_correios extends vmPSPlugin
             return false;
         }
 
-        $country = $cart->ST['virtuemart_country_id'];
+        $country = $this->getCountryId($cart);
 
         if (($zipCode == true) && ($country == '30')) {
             return true;
